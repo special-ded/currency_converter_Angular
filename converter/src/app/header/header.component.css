@@ -1,0 +1,20 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #606468;
+  font-family: 'Open Sans', sans-serif;
+
+}
+
+.title {
+  text-align: center;
+  margin: 20px 0px 20px 0px;
+}
+
+
+.currency__list {
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}

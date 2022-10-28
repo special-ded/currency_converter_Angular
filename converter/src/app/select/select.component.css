@@ -12,6 +12,16 @@
   text-align: center;
 }
 
+.select__wrap {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.select__item {
+  list-style: none;
+}
+
 
 /* PAGINATOR */
 
@@ -64,8 +74,9 @@
 
 .select__list {
   width: 200px;
-  height: 118px;
+  height: 135px;
   margin-top: 8px;
+  padding-top: 13px;
   position: absolute;
   left: 0;
   right: 0;
@@ -84,6 +95,7 @@
   padding: 8px 12px;
   border-radius: 8px;
   text-align: left;
+  background: var(--white-color);
 }
 
 .select__item:hover {

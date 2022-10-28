@@ -2,26 +2,40 @@
   <h2 class="title">Check live foreign currency exchange rates</h2>
 
   <div class="select__wrap">
-    <select class="select">
-      <!--Supplement an id here instead of using 'name'-->
-      <option value="EUR">EUR</option>
-      <option value="USD" selected>USD</option>
-      <option value="UAH">UAH</option>
-    </select>
 
-    <div class="input__wrap">
-      <input class="input__value" value="Album 1" />
-      <div class="input__icon">
-        <svg class="select__icon" width="20" height="20">
-          <use class="select__icon-use" href="./assets/images/sprite.svg#icon-arrow-default"></use>
-        </svg>
+
+    <div [ngClass]="toggleF ? 'is-active': '' " class="select">
+      <div (click)="clickHandlerFirst()" class="input__wrap">
+        <input class="input__value" value="USD" />
+        <div class="input__icon">
+          <svg class="select__icon" width="20" height="20">
+            <use class="select__icon-use" href="./assets/images/sprite.svg#icon-arrow-default"></use>
+          </svg>
+        </div>
       </div>
+      <ul class="select__list">
+        <li value="USD" class="select__item">USD</li>
+        <li value="EUR" class="select__item">EUR</li>
+        <li value="UAH" class="select__item">UAH</li>
+      </ul>
     </div>
-    <ul class="select__list">
-      <li value="1" class="select__item">Album 1</li>
-      <li value="2" class="select__item">Album 2</li>
-      <li value="3" class="select__item">Album 3</li>
-    </ul>
+
+    <div [ngClass]="toggleS ? 'is-active': '' " class="select">
+      <div (click)="clickHandlerSecond()" class="input__wrap">
+        <input class="input__value" value="USD" />
+        <div class="input__icon">
+          <svg class="select__icon" width="20" height="20">
+            <use class="select__icon-use" href="./assets/images/sprite.svg#icon-arrow-default"></use>
+          </svg>
+        </div>
+      </div>
+      <ul class="select__list">
+        <li value="USD" class="select__item">USD</li>
+        <li value="EUR" class="select__item">EUR</li>
+        <li value="UAH" class="select__item">UAH</li>
+      </ul>
+    </div>
+
 
   </div>
 

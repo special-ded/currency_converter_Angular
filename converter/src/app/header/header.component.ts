@@ -6,35 +6,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
-    this.getExchangeRate();
+
+    this.renderRate()
   }
 
   usd: number = 0;
-  json = [];
+  eur: number = 0;
 
-  async aaa() {
+  json: any = []
+
+
+  async renderRate() {
     this.json = await this.getExchangeRate();
-    this.usd = await this.getExchangeRate();
-    console.log();
+    this.usd = this.json[25].rate
+    this.eur = this.json[32].rate
+
+    console.log(this.json);
+    console.log(this.usd);
   }
 
-  //  eur = json[25].rate
 
   async getExchangeRate() {
     try {
-      const USDurl =
-        'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchangenew?json?valcode=USD&date=20201028';
-      const UERurl =
-        'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchangenew?json?valcode=EUR&date=20201028';
       const url =
         'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchangenew?json';
       const response = await fetch(url);
       const json = await response.json();
-      console.log(json);
-
       return json;
     } catch (error) {
       console.error('Error:', error);

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
+interface ExchRateObj {
+  rate: number;
+  cc: string;
+}
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,15 +14,12 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
     this.renderRate()
   }
-
   usd: number = 0;
   eur: number = 0;
 
-  json: any = []
-
+  json: ExchRateObj[] = []
 
   async renderRate() {
     this.json = await this.getExchangeRate();

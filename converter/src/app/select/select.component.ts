@@ -23,23 +23,7 @@ export class SelectComponent implements OnInit {
   }
 
   getSelectTemplate() {
-    return `
-    <div class="input__wrap">
-    <input class="input__value" value="Album 1" />
-    <div class="input__icon">
-      <svg class="select__icon" width="20" height="20">
-        <use
-          class="select__icon-use"
-          href="./assets/images/sprite.svg#icon-arrow-default"
-        ></use>
-      </svg>
-    </div>
-  </div>
-  <ul class="select__list">
-    <li value="1" class="select__item">Album 1</li>
-    <li value="2" class="select__item">Album 2</li>
-    <li value="3" class="select__item">Album 3</li>
-  </ul>`
+
   }
 
   // initEventListeners() {

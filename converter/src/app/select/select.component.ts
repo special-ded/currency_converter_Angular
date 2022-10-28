@@ -18,14 +18,26 @@ export class SelectComponent implements OnInit {
 
   toggleF: boolean = false;
   toggleS: boolean = false;
-  // href: string = logo
+  firstCurencyName: string = "USD";
+  secondCurencyName: string = "UAH";
 
-  clickHandlerFirst() {
+  clickHandlerFirst(event?: any) {
     this.toggleF = !this.toggleF
 
+
+    if (event?.target.innerText) {
+      this.firstCurencyName = event?.target.innerText
+    }
+
+
   }
-  clickHandlerSecond() {
+  clickHandlerSecond(event?: any) {
     this.toggleS = !this.toggleS
+
+    if (event?.target.innerText) {
+      this.secondCurencyName = event?.target.innerText
+    }
   }
+
 
 }

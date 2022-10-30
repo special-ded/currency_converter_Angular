@@ -22,8 +22,7 @@
   list-style: none;
 }
 
-
-/* PAGINATOR */
+/* SELECT START*/
 
 .select {
   font-weight: 400;
@@ -48,7 +47,7 @@
   cursor: pointer;
 }
 
-.input__value {
+.input__currency {
   display: block;
   width: 200px;
   height: 48px;
@@ -60,7 +59,7 @@
   caret-color: rgba(0, 0, 0, 0)
 }
 
-.input__value:focus {
+.input__currency:focus {
   outline: none;
   border: 1px solid var(--customer-dot-bg-active);
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -104,4 +103,17 @@
   border-radius: 11px;
 }
 
-/* PAGINATOR END */
+/* SELECT END */
+
+.input__value {
+  display: block;
+  width: 200px;
+  height: 48px;
+  margin-top: 10px;
+  padding: 6px 12px;
+  background: var(--registration-input-bg);
+  border: 1px solid var(--registration-input-bg);
+  border-radius: 22px;
+  cursor: pointer;
+
+}

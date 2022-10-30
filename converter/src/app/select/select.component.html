@@ -2,27 +2,40 @@
   <h2 class="title">Check live foreign currency exchange rates</h2>
 
   <div class="select__wrap">
-    <div [ngClass]="toggleF ? 'is-active': '' " class="select">
-      <div (click)="clickHandlerFirst()" class="input__wrap">
-        <input class="input__value" value={{firstCurencyName}} />
+    <div>
+      <div [ngClass]="toggleF ? 'is-active': '' " class="select">
+        <div (click)="clickHandlerFirst()" class="input__wrap">
+          <input class="input__currency" value={{firstCurencyName}} />
+        </div>
+        <ul (click)="clickHandlerFirst($event)" class="select__list">
+          <li value="USD" class="select__item">USD</li>
+          <li value="EUR" class="select__item">EUR</li>
+          <li value="UAH" class="select__item">UAH</li>
+        </ul>
+
       </div>
-      <ul (click)="clickHandlerFirst($event)" class="select__list">
-        <li value="USD" class="select__item">USD</li>
-        <li value="EUR" class="select__item">EUR</li>
-        <li value="UAH" class="select__item">UAH</li>
-      </ul>
+      <input (input)="inputHandler($event)" class="input__value" type="number" name="firstCurrency"
+        value={{firstCurencyValue}}>
     </div>
 
-    <div [ngClass]="toggleS ? 'is-active': '' " class="select">
-      <div (click)="clickHandlerSecond()" class="input__wrap">
-        <input class="input__value" value={{secondCurencyName}} />
+
+    <div>
+      <div [ngClass]="toggleS ? 'is-active': '' " class="select">
+        <div (click)="clickHandlerSecond()" class="input__wrap">
+          <input class="input__currency" value={{secondCurencyName}} />
+        </div>
+        <ul (click)="clickHandlerSecond($event)" class="select__list">
+          <li value="USD" class="select__item">USD</li>
+          <li value="EUR" class="select__item">EUR</li>
+          <li value="UAH" class="select__item">UAH</li>
+        </ul>
+
       </div>
-      <ul (click)="clickHandlerSecond($event)" class="select__list">
-        <li value="USD" class="select__item">USD</li>
-        <li value="EUR" class="select__item">EUR</li>
-        <li value="UAH" class="select__item">UAH</li>
-      </ul>
+      <input (input)="inputHandler($event)" class="input__value" type="number" name="secondCurrency"
+        value={{secondCurencyValue}}>
+
     </div>
+
 
 
   </div>

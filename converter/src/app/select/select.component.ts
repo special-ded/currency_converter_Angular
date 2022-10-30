@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-
-
 interface ExchRateObj {
-  result: number
+  rate: number;
+  cc: string;
 }
 
 @Component({
@@ -19,13 +18,11 @@ export class SelectComponent implements OnInit {
     this.renderRate()
   }
 
-
-
   selectDiv: any;
   toggleF: boolean = false;
   toggleS: boolean = false;
-  firstCurencyName: string = "USD";
-  secondCurencyName: string = "UAH";
+  firstCurencyName: string = "UAH";
+  secondCurencyName: string = "USD";
   firstCurencyValue: number = 0;
   secondCurencyValue: number = 0;
 
@@ -46,23 +43,21 @@ export class SelectComponent implements OnInit {
     }
   }
 
+  async inputHandler(event: any) {
+    const secondCurencyNameRate = this.rate.find(el => el.cc === this.secondCurencyName)?.rate
+    const firstCurencyNameRate = this.rate.find(el => el.cc === this.firstCurencyName)?.rate
 
-
-  async inputHandler(event?: any) {
-
-    console.log(event.target.value)
     if (event.target.name === "firstCurrency") {
-      this.rate = await this.getExchangeRate();
-      console.log(this.rate)
-      console.log(this.rate.result)
-      this.secondCurencyValue = this.rate.result * event.target.value
 
+
+
+      if (secondCurencyNameRate) this.secondCurencyValue = event.target.value / secondCurencyNameRate
     }
 
     if (event.target.name === "secondCurrency") {
-      this.rate = await this.getExchangeRate();
-      console.log(this.rate.result)
-      this.firstCurencyValue = this.rate.result * event.target.value
+
+      console.log(this.rate)
+      this.firstCurencyValue = event.target.value
 
     }
   }
@@ -71,9 +66,7 @@ export class SelectComponent implements OnInit {
   usd: number = 0;
   eur: number = 0;
 
-  rate: ExchRateObj = {
-    result: 1
-  }
+  rate: ExchRateObj[] = []
 
   async renderRate() {
     this.rate = await this.getExchangeRate();
@@ -82,13 +75,11 @@ export class SelectComponent implements OnInit {
 
 
   async getExchangeRate() {
-    let url = `https://api.exchangerate.host/convert?from=${this.firstCurencyName}
-    &to=${this.secondCurencyName}`
-    console.log(url)
+
+    const url =
+      'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchangenew?json';
     try {
-      const response = await fetch(url, {
-        method: 'GET',
-      });
+      const response = await fetch(url);
       const rate = await response.json();
       return rate;
     } catch (error) {

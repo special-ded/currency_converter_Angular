@@ -18,13 +18,12 @@ export class SelectComponent implements OnInit {
     this.renderRate()
   }
 
-  selectDiv: any;
   toggleF: boolean = false;
   toggleS: boolean = false;
   firstCurencyName: string = "UAH";
   secondCurencyName: string = "USD";
-  firstCurencyValue: number = 0;
-  secondCurencyValue: number = 0;
+  firstValue: number = 0;
+  secondValue: number = 0;
 
 
   clickHandlerFirst(event?: any) {
@@ -41,51 +40,52 @@ export class SelectComponent implements OnInit {
     if (event?.target.innerText) {
       this.secondCurencyName = event?.target.innerText
     }
+    if (event) this.inputHandler(event)
   }
 
   async inputHandler(event: any) {
-    const secondCurencyNameRate = this.rate.find(el => el.cc === this.secondCurencyName)?.rate
-    const firstCurencyNameRate = this.rate.find(el => el.cc === this.firstCurencyName)?.rate
+    console.log(this.secondCurencyName);
+    console.log(this.firstValue);
+    const firstInputValue = "firstInputValue"
+    const secondInputValue = "secondInputValue"
+    const inputName: string = event.target.name;
 
-    if (event.target.name === "firstCurrency") {
+    const secondCurencyNameRate = this.rates.find(el => el.cc === this.secondCurencyName)?.rate
+    const firstCurencyNameRate = this.rates.find(el => el.cc === this.firstCurencyName)?.rate
 
-
-
-      if (secondCurencyNameRate) this.secondCurencyValue = event.target.value / secondCurencyNameRate
+    if (this.firstCurencyName === this.secondCurencyName) {
+      this.secondValue = this.firstValue
+      return
     }
 
-    if (event.target.name === "secondCurrency") {
+    if (secondCurencyNameRate) this.secondValue = this.firstValue / secondCurencyNameRate
 
-      console.log(this.rate)
-      this.firstCurencyValue = event.target.value
+
+    if (inputName === secondInputValue) {
+      this.firstValue = this.secondValue
 
     }
   }
-
 
   usd: number = 0;
   eur: number = 0;
-
-  rate: ExchRateObj[] = []
+  rates: ExchRateObj[] = []
 
   async renderRate() {
-    this.rate = await this.getExchangeRate();
-    return this.rate
+    this.rates = await this.getExchangeRate();
+    return this.rates
   }
 
-
   async getExchangeRate() {
-
     const url =
       'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchangenew?json';
     try {
       const response = await fetch(url);
-      const rate = await response.json();
-      return rate;
+      const rates = await response.json();
+      return rates;
     } catch (error) {
       console.error('Error:', error);
     }
   }
-
 
 }

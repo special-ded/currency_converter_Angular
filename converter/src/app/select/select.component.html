@@ -14,8 +14,8 @@
         </ul>
 
       </div>
-      <input (input)="inputHandler($event)" class="input__value" type="number" name="firstCurrency"
-        value={{firstCurencyValue}}>
+      <input (input)="inputHandler($event)" class="input__value" type="number" name="firstInputValue"
+        value={{firstValue}} [(ngModel)]="firstValue">
     </div>
 
 
@@ -31,8 +31,8 @@
         </ul>
 
       </div>
-      <input (input)="inputHandler($event)" class="input__value" type="number" name="secondCurrency"
-        value={{secondCurencyValue}}>
+      <input (input)="inputHandler($event)" class="input__value" type="number" name="secondInputValue"
+        value={{secondValue}} [(ngModel)]="secondValue">
 
     </div>
 

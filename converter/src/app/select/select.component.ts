@@ -18,6 +18,7 @@ export class SelectComponent implements OnInit {
     this.renderRate()
   }
 
+  rates: ExchRateObj[] = []
   toggleF: boolean = false;
   toggleS: boolean = false;
   firstCurencyName: string = "UAH";
@@ -25,13 +26,13 @@ export class SelectComponent implements OnInit {
   firstValue: number = 0;
   secondValue: number = 0;
 
-
   clickHandlerFirst(event?: any) {
     this.toggleF = !this.toggleF
 
     if (event?.target.innerText) {
       this.firstCurencyName = event?.target.innerText
     }
+    if (event) this.inputHandler(event)
   }
 
   clickHandlerSecond(event?: any) {
@@ -44,32 +45,56 @@ export class SelectComponent implements OnInit {
   }
 
   async inputHandler(event: any) {
-    console.log(this.secondCurencyName);
-    console.log(this.firstValue);
-    const firstInputValue = "firstInputValue"
-    const secondInputValue = "secondInputValue"
+    const secondInputValue = "secondInputValue";
+    const uah = "UAH";
     const inputName: string = event.target.name;
+    const secondCurencyRate = this.rates.find(el => el.cc === this.secondCurencyName)?.rate;
+    const firstCurencyRate = this.rates.find(el => el.cc === this.firstCurencyName)?.rate;
 
-    const secondCurencyNameRate = this.rates.find(el => el.cc === this.secondCurencyName)?.rate
-    const firstCurencyNameRate = this.rates.find(el => el.cc === this.firstCurencyName)?.rate
+    if (inputName === secondInputValue) {
+      this.secondInputHandler(firstCurencyRate, secondCurencyRate, uah)
+      return
+    }
+
+    this.firstInputHandler(firstCurencyRate, secondCurencyRate, uah)
+  }
+
+  firstInputHandler(firstCurencyRate: any, secondCurencyRate: any, uah: string) {
 
     if (this.firstCurencyName === this.secondCurencyName) {
       this.secondValue = this.firstValue
       return
     }
 
-    if (secondCurencyNameRate) this.secondValue = this.firstValue / secondCurencyNameRate
-
-
-    if (inputName === secondInputValue) {
-      this.firstValue = this.secondValue
+    if (this.firstCurencyName === uah) {
+      if (secondCurencyRate) this.secondValue = this.firstValue / secondCurencyRate
 
     }
+
+    if (this.secondCurencyName === uah) {
+      if (firstCurencyRate) this.secondValue = this.firstValue * firstCurencyRate
+    }
+
+    if (secondCurencyRate && firstCurencyRate) this.secondValue = this.firstValue * firstCurencyRate / secondCurencyRate
   }
 
-  usd: number = 0;
-  eur: number = 0;
-  rates: ExchRateObj[] = []
+  secondInputHandler(firstCurencyRate: any, secondCurencyRate: any, uah: string) {
+
+    if (this.secondCurencyName === this.firstCurencyName) {
+      this.firstValue = this.secondValue
+      return
+    }
+
+    if (this.secondCurencyName === uah) {
+      if (firstCurencyRate) this.firstValue = this.secondValue / firstCurencyRate
+    }
+
+    if (this.firstCurencyName === uah) {
+      if (secondCurencyRate) this.firstValue = this.secondValue * secondCurencyRate
+    }
+
+    if (secondCurencyRate && firstCurencyRate) this.firstValue = this.secondValue * secondCurencyRate / firstCurencyRate
+  }
 
   async renderRate() {
     this.rates = await this.getExchangeRate();

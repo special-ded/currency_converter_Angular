@@ -1,6 +1,6 @@
 <section class="container section__select">
   <h2 class="title">Check live foreign currency exchange rates</h2>
-
+  <!-- FIRST INPUT -->
   <div class="select__wrap">
     <div>
       <div [ngClass]="toggleF ? 'is-active': '' " class="select">
@@ -12,13 +12,11 @@
           <li value="EUR" class="select__item">EUR</li>
           <li value="UAH" class="select__item">UAH</li>
         </ul>
-
       </div>
       <input (input)="inputHandler($event)" class="input__value" type="number" name="firstInputValue"
         value={{firstValue}} [(ngModel)]="firstValue">
     </div>
-
-
+    <!-- SECOND INPUT -->
     <div>
       <div [ngClass]="toggleS ? 'is-active': '' " class="select">
         <div (click)="clickHandlerSecond()" class="input__wrap">
@@ -29,17 +27,9 @@
           <li value="EUR" class="select__item">EUR</li>
           <li value="UAH" class="select__item">UAH</li>
         </ul>
-
       </div>
       <input (input)="inputHandler($event)" class="input__value" type="number" name="secondInputValue"
-        value={{secondValue}} [(ngModel)]="secondValue">
-
+        value={{secondValue}} [(ngModel)]="secondValue" />
     </div>
-
-
-
   </div>
-
-
-
 </section>

@@ -17,20 +17,16 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.renderRate()
   }
+
   usd: number = 0;
   eur: number = 0;
-
   json: ExchRateObj[] = []
 
   async renderRate() {
     this.json = await this.getExchangeRate();
     this.usd = this.json[25].rate
     this.eur = this.json[32].rate
-
-    console.log(this.json);
-    console.log(this.usd);
   }
-
 
   async getExchangeRate() {
     try {

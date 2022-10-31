@@ -23,8 +23,8 @@ export class SelectComponent implements OnInit {
   toggleS: boolean = false;
   firstCurencyName: string = "UAH";
   secondCurencyName: string = "USD";
-  firstValue: number = 0;
-  secondValue: number = 0;
+  firstValue: number;
+  secondValue: number;
 
   clickHandlerFirst(event?: any) {
     this.toggleF = !this.toggleF

@@ -14,7 +14,7 @@
         </ul>
       </div>
       <input (input)="inputHandler($event)" class="input__value" type="number" name="firstInputValue"
-        value={{firstValue}} [(ngModel)]="firstValue">
+        [(ngModel)]="firstValue">
     </div>
     <!-- SECOND INPUT -->
     <div>
@@ -29,7 +29,7 @@
         </ul>
       </div>
       <input (input)="inputHandler($event)" class="input__value" type="number" name="secondInputValue"
-        value={{secondValue}} [(ngModel)]="secondValue" />
+        [(ngModel)]="secondValue " />
     </div>
   </div>
 </section>

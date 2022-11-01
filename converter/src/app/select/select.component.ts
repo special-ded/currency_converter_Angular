@@ -23,7 +23,7 @@ export class SelectComponent implements OnInit {
   toggleS: boolean = false;
   firstCurencyName: string = "UAH";
   secondCurencyName: string = "USD";
-  firstValue: number;
+  firstValue: number = 1;
   secondValue: number;
 
   clickHandlerFirst(event?: any) {
@@ -68,7 +68,6 @@ export class SelectComponent implements OnInit {
 
     if (this.firstCurencyName === uah) {
       if (secondCurencyRate) this.secondValue = this.firstValue / secondCurencyRate
-
     }
 
     if (this.secondCurencyName === uah) {

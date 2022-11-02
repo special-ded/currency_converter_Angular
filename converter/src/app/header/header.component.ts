@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.renderRate()
     this.getRates()
   }
 
@@ -27,33 +26,12 @@ export class HeaderComponent implements OnInit {
   eur: number = 0;
   json: ExchRateObj[] = []
 
-  ratesqqq: any
-
   getRates() {
-    this.ratesqqq = this.rates.reqRates()
-    console.log(this.ratesqqq);
-
+    this.rates.reqRates()
+      .subscribe((val: ExchRateObj[]) => {
+        this.json = val
+        this.usd = this.json[25].rate
+        this.eur = this.json[32].rate
+      })
   }
-
-
-
-
-
-  // async renderRate() {
-  //   this.json = await this.getExchangeRate();
-  //   this.usd = this.json[25].rate
-  //   this.eur = this.json[32].rate
-  // }
-
-  // async getExchangeRate() {
-  //   try {
-  //     const url =
-  //       'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchangenew?json';
-  //     const response = await fetch(url);
-  //     const json = await response.json();
-  //     return json;
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //   }
-  // }
 }

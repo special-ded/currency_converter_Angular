@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ExchRateObj } from './header/header.component';
+import { ExchRateObj } from '../app/exchrateobj';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +12,7 @@ export class RatesService {
 
   constructor(
     private http: HttpClient
-  ) {
-    this.reqRates()
-  }
+  ) { }
 
   reqRates() {
     return this.http.get<ExchRateObj[]>(this.rateURL);

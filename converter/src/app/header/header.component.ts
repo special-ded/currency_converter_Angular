@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ExchRateObj } from '../exchrateobj';
 import { RatesService } from '../rates.service';
 
-export interface ExchRateObj {
-  rate: number;
-  cc: string;
-}
 
 @Component({
   selector: 'app-header',

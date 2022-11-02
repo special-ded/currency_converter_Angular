@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ExchRateObj } from '../exchrateobj';
+import { RatesService } from '../rates.service';
 
-interface ExchRateObj {
-  rate: number;
-  cc: string;
-}
 
 @Component({
   selector: 'app-select',
@@ -45,11 +43,11 @@ export class SelectComponent implements OnInit {
   }
 
   async inputHandler(event: any) {
-    const secondInputValue = "secondInputValue";
-    const uah = "UAH";
+    const secondInputValue: string = "secondInputValue";
+    const uah: string = "UAH";
     const inputName: string = event.target.name;
-    const secondCurencyRate = this.rates.find(el => el.cc === this.secondCurencyName)?.rate;
-    const firstCurencyRate = this.rates.find(el => el.cc === this.firstCurencyName)?.rate;
+    const secondCurencyRate: number | undefined = this.rates.find(el => el.cc === this.secondCurencyName)?.rate
+    const firstCurencyRate: number | undefined = this.rates.find(el => el.cc === this.firstCurencyName)?.rate;
 
     if (inputName === secondInputValue) {
       this.secondInputHandler(firstCurencyRate, secondCurencyRate, uah)
@@ -59,7 +57,7 @@ export class SelectComponent implements OnInit {
     this.firstInputHandler(firstCurencyRate, secondCurencyRate, uah)
   }
 
-  firstInputHandler(firstCurencyRate: any, secondCurencyRate: any, uah: string) {
+  firstInputHandler(firstCurencyRate: number | undefined, secondCurencyRate: number | undefined, uah: string) {
 
     if (this.firstCurencyName === this.secondCurencyName) {
       this.secondValue = this.firstValue
@@ -77,7 +75,7 @@ export class SelectComponent implements OnInit {
     if (secondCurencyRate && firstCurencyRate) this.secondValue = this.firstValue * firstCurencyRate / secondCurencyRate
   }
 
-  secondInputHandler(firstCurencyRate: any, secondCurencyRate: any, uah: string) {
+  secondInputHandler(firstCurencyRate: number | undefined, secondCurencyRate: number | undefined, uah: string) {
 
     if (this.secondCurencyName === this.firstCurencyName) {
       this.firstValue = this.secondValue

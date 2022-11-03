@@ -12,7 +12,7 @@ import { RatesService } from '../rates.service';
 export class HeaderComponent implements OnInit {
 
   constructor(
-    private rates: RatesService
+    private exchRates: RatesService
   ) { }
 
   ngOnInit(): void {
@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   json: ExchRateObj[] = []
 
   getRates() {
-    this.rates.reqRates()
+    this.exchRates.reqRates()
       .subscribe((val: ExchRateObj[]) => {
         this.json = val
         this.usd = this.json[25].rate

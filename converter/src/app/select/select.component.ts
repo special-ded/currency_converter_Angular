@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ExchRateObj } from '../exchrateobj';
 import { RatesService } from '../rates.service';
 
-
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
@@ -10,19 +9,41 @@ import { RatesService } from '../rates.service';
 })
 
 export class SelectComponent implements OnInit {
-  constructor() { }
+  constructor(
+    private exchRates: RatesService
+  ) { }
 
-  ngOnInit(): void {
-    this.renderRate()
-  }
+  ngOnInit(): void { }
 
   rates: ExchRateObj[] = []
+  secondInputValue: string = "secondInputValue";
+  uah: string = "UAH";
   toggleF: boolean = false;
   toggleS: boolean = false;
   firstCurencyName: string = "UAH";
   secondCurencyName: string = "USD";
   firstValue: number = 1;
   secondValue: number;
+
+
+  secondCurencyRate: number | undefined;
+  firstCurencyRate: number | undefined = 0;
+
+  getRates(event: any) {
+    this.exchRates.reqRates()
+      .subscribe((val: ExchRateObj[]) => {
+
+        this.rates = val;
+        this.secondCurencyRate = this.rates.find(el => el.cc === this.secondCurencyName)?.rate;
+        this.firstCurencyRate = this.rates.find(el => el.cc === this.firstCurencyName)?.rate;
+
+        if (event.target.name === this.secondInputValue) {
+          this.secondInputHandler(this.firstCurencyRate, this.secondCurencyRate, this.uah)
+          return
+        }
+        this.firstInputHandler(this.firstCurencyRate, this.secondCurencyRate, this.uah)
+      })
+  }
 
   clickHandlerFirst(event?: any) {
     this.toggleF = !this.toggleF
@@ -42,19 +63,8 @@ export class SelectComponent implements OnInit {
     if (event) this.inputHandler(event)
   }
 
-  async inputHandler(event: any) {
-    const secondInputValue: string = "secondInputValue";
-    const uah: string = "UAH";
-    const inputName: string = event.target.name;
-    const secondCurencyRate: number | undefined = this.rates.find(el => el.cc === this.secondCurencyName)?.rate
-    const firstCurencyRate: number | undefined = this.rates.find(el => el.cc === this.firstCurencyName)?.rate;
-
-    if (inputName === secondInputValue) {
-      this.secondInputHandler(firstCurencyRate, secondCurencyRate, uah)
-      return
-    }
-
-    this.firstInputHandler(firstCurencyRate, secondCurencyRate, uah)
+  inputHandler(event: any) {
+    this.getRates(event)
   }
 
   firstInputHandler(firstCurencyRate: number | undefined, secondCurencyRate: number | undefined, uah: string) {
@@ -66,13 +76,15 @@ export class SelectComponent implements OnInit {
 
     if (this.firstCurencyName === uah) {
       if (secondCurencyRate) this.secondValue = this.firstValue / secondCurencyRate
+      return
     }
 
     if (this.secondCurencyName === uah) {
       if (firstCurencyRate) this.secondValue = this.firstValue * firstCurencyRate
+      return
     }
 
-    if (secondCurencyRate && firstCurencyRate) this.secondValue = this.firstValue * firstCurencyRate / secondCurencyRate
+    if (secondCurencyRate && firstCurencyRate) this.secondValue = this.firstValue * (firstCurencyRate / secondCurencyRate)
   }
 
   secondInputHandler(firstCurencyRate: number | undefined, secondCurencyRate: number | undefined, uah: string) {
@@ -91,23 +103,6 @@ export class SelectComponent implements OnInit {
     }
 
     if (secondCurencyRate && firstCurencyRate) this.firstValue = this.secondValue * secondCurencyRate / firstCurencyRate
-  }
-
-  async renderRate() {
-    this.rates = await this.getExchangeRate();
-    return this.rates
-  }
-
-  async getExchangeRate() {
-    const url =
-      'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchangenew?json';
-    try {
-      const response = await fetch(url);
-      const rates = await response.json();
-      return rates;
-    } catch (error) {
-      console.error('Error:', error);
-    }
   }
 
 }

@@ -1,6 +1,8 @@
 .container {
   max-width: 800px;
-  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: 'Roboto Mono', monospace;
   margin: auto;
 }
 
@@ -10,6 +12,8 @@
 
 .title {
   text-align: center;
+
+  color: var(--registration-input-box-shadow);
 }
 
 .select__wrap {
@@ -25,8 +29,6 @@
 /* SELECT START*/
 
 .select {
-  font-weight: 400;
-  font-size: 16px;
   line-height: 1.25;
   align-items: center;
   color: var(--secondary-text-color);

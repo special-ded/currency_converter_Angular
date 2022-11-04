@@ -4,8 +4,10 @@
   --white-color: #fff;
   --secondary-text-color: #5C5C5C;
   --registration-input-bg: #F3F6FC;
-  --registration-input-box-shadow: rgba(0, 0, 0, 0.25);
+  --registration-input-box-shadow: rgba(0, 0, 0, 0.62);
   --customer-dot-bg-active: #1B63F0;
+  --title-color: #606468;
+  --green-color: rgb(82, 211, 35);
 }
 
 

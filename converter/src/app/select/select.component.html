@@ -5,7 +5,7 @@
     <div>
       <div [ngClass]="toggleF ? 'is-active': '' " class="select">
         <div (click)="clickHandlerFirst()" class="input__wrap">
-          <input class="input__currency" value={{firstCurencyName}} />
+          <input class="input__currency" value={{firstCurrencyName}} />
         </div>
         <ul (click)="clickHandlerFirst($event)" class="select__list">
           <li value="USD" class="select__item">USD</li>
@@ -20,7 +20,7 @@
     <div>
       <div [ngClass]="toggleS ? 'is-active': '' " class="select">
         <div (click)="clickHandlerSecond()" class="input__wrap">
-          <input class="input__currency" value={{secondCurencyName}} />
+          <input class="input__currency" value={{secondCurrencyName}} />
         </div>
         <ul (click)="clickHandlerSecond($event)" class="select__list">
           <li value="USD" class="select__item">USD</li>

@@ -25,8 +25,8 @@ export class SelectComponent implements OnInit {
   secondCurrencyName: string = "USD";
   firstValue: number = 1;
   secondValue: number;
-  secondCurrencyRate: number | undefined;
   firstCurrencyRate: number | undefined = 0;
+  secondCurrencyRate: number | undefined;
 
 
   getRates(event: Event) {
@@ -46,7 +46,6 @@ export class SelectComponent implements OnInit {
   }
 
   clickHandlerFirst(event?: MouseEvent) {
-    this.toggleF = !this.toggleF;
 
     if ((<HTMLTextAreaElement>event?.target).innerText) {
       this.firstCurrencyName = (<HTMLTextAreaElement>event?.target).innerText
@@ -55,7 +54,6 @@ export class SelectComponent implements OnInit {
   }
 
   clickHandlerSecond(event?: MouseEvent) {
-    this.toggleS = !this.toggleS;
 
     if ((<HTMLTextAreaElement>event?.target).innerText) {
       this.secondCurrencyName = (<HTMLTextAreaElement>event?.target).innerText

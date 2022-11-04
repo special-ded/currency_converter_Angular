@@ -3,7 +3,7 @@
   <!-- FIRST INPUT -->
   <div class="select__wrap">
     <div>
-      <div [ngClass]="toggleF ? 'is-active': '' " class="select">
+      <div (click)="toggleF=!toggleF" [ngClass]="toggleF ? 'is-active' : ''" class="select">
         <div (click)="clickHandlerFirst()" class="input__wrap">
           <input class="input__currency" value={{firstCurrencyName}} />
         </div>
@@ -18,7 +18,7 @@
     </div>
     <!-- SECOND INPUT -->
     <div>
-      <div [ngClass]="toggleS ? 'is-active': '' " class="select">
+      <div (click)="toggleS = !toggleS" [ngClass]="toggleS ? 'is-active': '' " class="select">
         <div (click)="clickHandlerSecond()" class="input__wrap">
           <input class="input__currency" value={{secondCurrencyName}} />
         </div>
@@ -29,7 +29,7 @@
         </ul>
       </div>
       <input (input)="inputHandler($event)" class="input__value" type="number" name="secondInputValue"
-        [(ngModel)]="secondValue " />
+        [(ngModel)]="secondValue" />
 
 
     </div>

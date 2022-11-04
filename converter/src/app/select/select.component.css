@@ -12,7 +12,6 @@
 
 .title {
   text-align: center;
-
   color: var(--registration-input-box-shadow);
 }
 
@@ -44,7 +43,7 @@
   width: 200px;
   height: 48px;
   display: flex;
-  background: var(--registration-input-bg);
+  background: var(--select-input-bg);
   border-radius: 22px;
   cursor: pointer;
 }
@@ -54,16 +53,16 @@
   width: 200px;
   height: 48px;
   padding: 6px 12px;
-  background: var(--registration-input-bg);
-  border: 1px solid var(--registration-input-bg);
+  background: var(--select-input-bg);
+  border: 1px solid var(--select-input-bg);
   border-radius: 22px;
   cursor: pointer;
-  caret-color: rgba(0, 0, 0, 0)
+  caret-color: var(--black-color)
 }
 
 .input__currency:focus {
   outline: none;
-  border: 1px solid var(--customer-dot-bg-active);
+  border: 1px solid var(--select-bg-active);
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -100,8 +99,8 @@
 }
 
 .select__item:hover {
-  background: var(--registration-input-bg);
-  color: var(--customer-dot-bg-active);
+  background: var(--select-input-bg);
+  color: var(--select-bg-active);
   border-radius: 11px;
 }
 
@@ -113,8 +112,8 @@
   height: 48px;
   margin-top: 10px;
   padding: 6px 12px;
-  background: var(--registration-input-bg);
-  border: 1px solid var(--registration-input-bg);
+  background: var(--select-input-bg);
+  border: 1px solid var(--select-input-bg);
   border-radius: 22px;
   cursor: pointer;
 }

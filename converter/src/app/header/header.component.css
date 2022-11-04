@@ -1,18 +1,17 @@
 .container {
   max-width: 800px;
   margin: 0 auto;
-  color: var(--title-color);
   font-weight: 600;
   font-size: 18px;
   font-family: 'Roboto Mono', monospace;
 }
 
 .title {
-
   text-align: center;
   margin: 20px 0px 20px 0px;
 }
-.currency__item{
+
+.currency__item {
   color: rgb(82, 211, 35);
 }
 
